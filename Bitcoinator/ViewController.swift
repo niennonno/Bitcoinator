@@ -9,11 +9,19 @@
 import UIKit
 import SwiftyJSON
 import Starscream
+import Whisper
+import Alamofire
 
 class ViewController: UIViewController {
     
     var socket = WebSocket(url: url!, protocols: ["blockchain"])
 
+    @IBOutlet weak var tansactionalHashLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var blockHashLabel: UILabel!
+    @IBOutlet weak var blockHeightLabel: UILabel!
+    @IBOutlet weak var btcSentLabel: UILabel!
+    @IBOutlet weak var rewardLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +38,13 @@ class ViewController: UIViewController {
     func starscream() {
         socket.delegate = self
         socket.connect()
+
     }
 }
 
 extension ViewController : WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
-        print("Connect")
+        print("Connected")
         socket.write(string: "{\"op\":\"unconfirmed_sub\"}")
         socket.write(string: "{\"op\":\"blocks_sub\"}")
     }
@@ -50,14 +59,15 @@ extension ViewController : WebSocketDelegate {
             return
         }
         
-         let json = JSON(dictionary)
-        
+        let json = JSON(dictionary["x"])
         
         if let op = dictionary["op"] as? String {
             if op == "utx" {
                 let utx = UTX(fromJSON: json)
-            } else {
-                print("Block")
+                handlingUTX(utx)
+            } else if op == "block" {
+                let block = Block(fromJSON: json)
+                handlingBlock(block)
             }
         } else {
             return
@@ -65,7 +75,37 @@ extension ViewController : WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print(data)
+    }
+   
+    func handlingUTX(_ utx: UTX) {
+
+        if utx.largestValue >= 0.002 {
+            tansactionalHashLabel.text = utx.transactionHash
+             getConvertedPrice(utx.largestValue)
+        }
+        
+    }
+    
+    func getConvertedPrice(_ btc: Double) {
+        Alamofire.request("https://blockchain.info/ticker", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil)
+            .responseJSON { (response) in
+                
+                let result = response.result.value as! NSDictionary
+                let dictionary = JSON(result)
+                let conversion = dictionary["USD"]["last"].doubleValue
+                
+                let converted = btc * conversion
+                
+                self.valueLabel.text = String(format: "%.2f", converted) + " $"
+        }
+        
+    }
+    
+    func handlingBlock(_ block: Block) {
+        blockHashLabel.text = block.blockHash
+        blockHeightLabel.text = "\(block.blockHeight)"
+        btcSentLabel.text = "\(block.btcSent/pow(10, 8)) ₿"
+        rewardLabel.text = "\(block.reward/pow(10, 8)) ₿"
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {

@@ -1,5 +1,5 @@
 //
-//  SessionManager.swift
+//  Models.swift
 //  Bitcoinator
 //
 //  Created by Aditya Vikram Godawat on 04/07/18.
@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class UTX: NSObject {
     var transactionHash: String!
-    var largestValue: Int!
+    var largestValue: Double!
     
     init(fromJSON json: JSON?) {
         super.init()
@@ -19,12 +19,11 @@ class UTX: NSObject {
         
         transactionHash = json["hash"].stringValue
         if let outs = json["out"].array {
-            var highValue = [Int]()
+            var highValue = [Double]()
             for out in outs {
-                highValue.append(out["value"].intValue)
+                highValue.append(out["value"].doubleValue)
             }
-            largestValue = highValue.max()
-            print(largestValue)
+            largestValue = highValue.max()!/pow(10, 8)
         }
     }
 }
