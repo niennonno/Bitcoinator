@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06379EDBE433D4780D70AB82 /* Pods_Bitcoinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991B79298BC06C3493205399 /* Pods_Bitcoinator.framework */; };
 		D33AEA9320E8367400956089 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AEA9220E8367400956089 /* AppDelegate.swift */; };
 		D33AEA9520E8367400956089 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AEA9420E8367400956089 /* ViewController.swift */; };
 		D33AEA9820E8367400956089 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33AEA9620E8367400956089 /* Main.storyboard */; };
 		D33AEA9A20E8367500956089 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33AEA9920E8367500956089 /* Assets.xcassets */; };
 		D33AEA9D20E8367500956089 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33AEA9B20E8367500956089 /* LaunchScreen.storyboard */; };
+		D347C03220ED386E008980FD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D347C03120ED386E008980FD /* Constants.swift */; };
+		D3F8451120ED59BF00C1460E /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8451020ED59BE00C1460E /* SessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62EDC9E772DEF457EA645D4C /* Pods-Bitcoinator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcoinator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcoinator/Pods-Bitcoinator.release.xcconfig"; sourceTree = "<group>"; };
+		7BF6AFB05D2BA42E5AF904C7 /* Pods-Bitcoinator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcoinator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcoinator/Pods-Bitcoinator.debug.xcconfig"; sourceTree = "<group>"; };
+		991B79298BC06C3493205399 /* Pods_Bitcoinator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bitcoinator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33AEA8F20E8367400956089 /* Bitcoinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bitcoinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33AEA9220E8367400956089 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D33AEA9420E8367400956089 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,8 @@
 		D33AEA9920E8367500956089 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D33AEA9C20E8367500956089 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D33AEA9E20E8367500956089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D347C03120ED386E008980FD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D3F8451020ED59BE00C1460E /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06379EDBE433D4780D70AB82 /* Pods_Bitcoinator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29B2E222CB4DE5EB623A5522 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BF6AFB05D2BA42E5AF904C7 /* Pods-Bitcoinator.debug.xcconfig */,
+				62EDC9E772DEF457EA645D4C /* Pods-Bitcoinator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		46A3A88E4E02E4DF7AF45D65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				991B79298BC06C3493205399 /* Pods_Bitcoinator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D33AEA8620E8367400956089 = {
 			isa = PBXGroup;
 			children = (
 				D33AEA9120E8367400956089 /* Bitcoinator */,
 				D33AEA9020E8367400956089 /* Products */,
+				29B2E222CB4DE5EB623A5522 /* Pods */,
+				46A3A88E4E02E4DF7AF45D65 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +84,8 @@
 			children = (
 				D33AEA9220E8367400956089 /* AppDelegate.swift */,
 				D33AEA9420E8367400956089 /* ViewController.swift */,
+				D347C03120ED386E008980FD /* Constants.swift */,
+				D3F8451020ED59BE00C1460E /* SessionManager.swift */,
 				D33AEA9620E8367400956089 /* Main.storyboard */,
 				D33AEA9920E8367500956089 /* Assets.xcassets */,
 				D33AEA9B20E8367500956089 /* LaunchScreen.storyboard */,
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D33AEAA120E8367500956089 /* Build configuration list for PBXNativeTarget "Bitcoinator" */;
 			buildPhases = (
+				5B110E3D36918AE658C1C755 /* [CP] Check Pods Manifest.lock */,
 				D33AEA8B20E8367400956089 /* Sources */,
 				D33AEA8C20E8367400956089 /* Frameworks */,
 				D33AEA8D20E8367400956089 /* Resources */,
+				940E4C5890161B892289CDB2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,6 +162,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5B110E3D36918AE658C1C755 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bitcoinator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		940E4C5890161B892289CDB2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Bitcoinator/Pods-Bitcoinator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Whisper/Whisper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whisper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bitcoinator/Pods-Bitcoinator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D33AEA8B20E8367400956089 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -137,6 +216,8 @@
 			files = (
 				D33AEA9520E8367400956089 /* ViewController.swift in Sources */,
 				D33AEA9320E8367400956089 /* AppDelegate.swift in Sources */,
+				D3F8451120ED59BF00C1460E /* SessionManager.swift in Sources */,
+				D347C03220ED386E008980FD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +359,7 @@
 		};
 		D33AEAA220E8367500956089 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BF6AFB05D2BA42E5AF904C7 /* Pods-Bitcoinator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +378,7 @@
 		};
 		D33AEAA320E8367500956089 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62EDC9E772DEF457EA645D4C /* Pods-Bitcoinator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

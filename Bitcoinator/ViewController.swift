@@ -7,19 +7,42 @@
 //
 
 import UIKit
+import SocketIO
+
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        socketCalls()
+        
     }
+    
+    func socketCalls() {
+        let manager = SocketManager(socketURL: url!, config: [.log(true), .forcePolling(true)])
+        let socket = manager.defaultSocket
+        socket.connect()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        socket.once(clientEvent: .connect, callback: { (_, _) in
+            print("connected")
+            let object: Any = [:]
+            socket.emitWithAck("{\"op\":\"unconfirmed_sub\"}", with: [object]).timingOut(after: 0, callback: { (any) in
+                print("Printing: \(any)")
+            })
+        })
+        
+        socket.onAny { (event) in
+            print(event)
+        }
+        
+//        socket.on("{\"op\":\"unconfirmed_sub\"}") { (data, ack) in
+//            print(data)
+//            ack.with("Got your currentAmount", "dude")
+//
+//        }
     }
-
-
 }
+
 
