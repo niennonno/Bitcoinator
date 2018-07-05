@@ -18,4 +18,4 @@ To run the app in your Mac, assuming you have Xcode and other relevant setup don
 pod install
 ```
 - open `Bitcoinator.xcworkspace`
--select your simulator and run!
+- select your simulator and run!
