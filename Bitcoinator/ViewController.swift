@@ -36,17 +36,23 @@ class ViewController: UIViewController {
     }
     
     func starscream() {
+        showWhisper(message: Message(title: "Connecting", textColor: .white, backgroundColor: .orange, images: nil))
         socket.delegate = self
         socket.connect()
-
+        
+        socket.onDisconnect = { (error: Error?) in
+            self.showWhisper(message: Message(title: "Disconnected", textColor: .white, backgroundColor: .red, images: nil))
+            self.socket.connect()
+        }
     }
 }
 
 extension ViewController : WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
-        print("Connected")
+        showWhisper(message: Message(title: "Connected!", textColor: .white, backgroundColor: .green, images: nil))
         socket.write(string: "{\"op\":\"unconfirmed_sub\"}")
         socket.write(string: "{\"op\":\"blocks_sub\"}")
+        
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -119,4 +125,9 @@ extension ViewController : WebSocketDelegate {
         return nil
     }
 
+    
+    func showWhisper(message: Message) {
+        Whisper.hide(whisperFrom: self.navigationController!)
+        Whisper.show(whisper: message, to: self.navigationController!)
+    }
 }
