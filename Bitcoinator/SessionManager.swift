@@ -1,57 +1,47 @@
-////
-////  SessionManager.swift
-////  Bitcoinator
-////
-////  Created by Aditya Vikram Godawat on 04/07/18.
-////  Copyright © 2018 Aditya Vikram Godawat. All rights reserved.
-////
 //
-//import Foundation
-//import SocketIO
-//import SwiftyJSON
+//  SessionManager.swift
+//  Bitcoinator
 //
-//protocol SocketConnectionHandler: class {
-//    func socketDidConnect(socket: SessionManager)
-//    func socketDidDisconnect(socket: SessionManager)
-//}
+//  Created by Aditya Vikram Godawat on 04/07/18.
+//  Copyright © 2018 Aditya Vikram Godawat. All rights reserved.
 //
-//class SessionManager {
-//    
-//    static let shared = SessionManager()
-//    fileprivate var socket: SocketIOClient?
-//    weak var delegate: SocketConnectionHandler?
-//
-//    func connect() {
-//        let manager = SocketManager(socketURL: url, config: [.log(true), .forcePolling(true)])
-//        socket = manager.defaultSocket
-//        
-//        self.socket?.once("connect") { _,_ in
-//            self.self.socketDidConnect(socket: self.socket)
-//        }
-//        
-//        self.socket?.once("disconnect") { (_,_) in
-//            self.socketDidDisconnect(socket: self.socket, error: nil)
-//        }
-//    }
-//
-//    func disconnect() {
-//        socket?.disconnect()
-//    }
-//    
-//    func socketDidConnect(socket: SocketIOClient?) {
-//        
-//        DispatchQueue.main.async { [weak self] in
-//            guard let weakSelf = self else { return }
-//            
-//            weakSelf.delegate?.socketDidConnect(socket: weakSelf)
-//        }
-//        
-//    }
-//    
-//    func socketDidDisconnect(socket: SocketIOClient?, error: NSError?) {
-//        delegate?.socketDidDisconnect(socket: self)
-//    }
-//
-//
-//}
-//
+
+import Foundation
+import SwiftyJSON
+
+class UTX: NSObject {
+    var transactionHash: String!
+    var largestValue: Int!
+    
+    init(fromJSON json: JSON?) {
+        super.init()
+        guard let json = json else { return }
+        
+        transactionHash = json["hash"].stringValue
+        if let outs = json["out"].array {
+            var highValue = [Int]()
+            for out in outs {
+                highValue.append(out["value"].intValue)
+            }
+            largestValue = highValue.max()
+            print(largestValue)
+        }
+    }
+}
+
+class Block: NSObject {
+    var blockHash: String!
+    var blockHeight: Int!
+    var btcSent: Double!
+    var reward: Double!
+
+    init(fromJSON json: JSON?) {
+        super.init()
+        guard let json = json else { return }
+
+        blockHash = json["hash"].stringValue
+        blockHeight = json["height"].intValue
+        btcSent = json["totalBTCSent"].doubleValue
+        reward = json["reward"].doubleValue
+    }
+}

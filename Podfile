@@ -8,7 +8,7 @@ target 'Bitcoinator' do
   pod 'Alamofire', '~> 4.7'
   pod 'Whisper'
   pod 'SwiftyJSON'
-
+  pod 'Starscream', '~> 3.0.2'
   # Pods for Bitcoinator
 
 end
